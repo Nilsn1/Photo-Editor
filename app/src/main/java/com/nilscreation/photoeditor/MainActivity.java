@@ -2,13 +2,11 @@ package com.nilscreation.photoeditor;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == 100) {
             if (data.getData() != null) {
                 Uri filepath = data.getData();
