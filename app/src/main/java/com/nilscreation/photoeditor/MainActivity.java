@@ -2,6 +2,8 @@ package com.nilscreation.photoeditor;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,15 +14,18 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 public class MainActivity extends AppCompatActivity {
 
     Button editPhoto;
+    CardView btnGallery,btnCamera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editPhoto = findViewById(R.id.editPhoto);
+//        editPhoto = findViewById(R.id.editPhoto);
+        btnGallery = findViewById(R.id.btnGallery);
+        btnCamera = findViewById(R.id.btnCamera);
 
-        editPhoto.setOnClickListener(new View.OnClickListener() {
+        btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -33,10 +38,23 @@ public class MainActivity extends AppCompatActivity {
                 //dhaval2404 Image picker Library
                 ImagePicker.with(MainActivity.this)
                         .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .galleryOnly()
                         .compress(1024)			//Final image size will be less than 1 MB(Optional)
                         .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
                         .start(100);
 
+            }
+        });
+
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImagePicker.with(MainActivity.this)
+                        .crop()
+                        .cameraOnly()
+                        .compress(1024)
+                        .maxResultSize(1080, 1080)
+                        .start(100);
             }
         });
     }
