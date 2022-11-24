@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import ja.burhanrashid52.photoeditor.PhotoEditor;
@@ -18,7 +19,7 @@ public class EditActivity extends AppCompatActivity {
 
     PhotoEditorView photoEditorView;
     PhotoEditor photoEditor;
-    Button addEffect;
+    ImageView btnBack, btnUndo, btnRedo, btnExport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,10 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
 
         photoEditorView = findViewById(R.id.photoEditorView);
-        addEffect = findViewById(R.id.addEffect);
+        btnBack = findViewById(R.id.btnBack);
+        btnUndo = findViewById(R.id.btnUndo);
+        btnRedo = findViewById(R.id.btnRedo);
+        btnExport = findViewById(R.id.btnExport);
 
         photoEditorView.getSource().setImageURI(getIntent().getData());
 
@@ -34,23 +38,40 @@ public class EditActivity extends AppCompatActivity {
                 .setPinchTextScalable(true)
                 .build();
 
-        addEffect.setOnClickListener(new View.OnClickListener() {
+        //Load ListFragment
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.container, new ListFragment());
+        ft.commit();
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.container, new ListFragment());
-                ft.commit();
+                onBackPressed();
+            }
+        });
+        btnUndo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                photoEditor.undo();
+            }
+        });
+        btnRedo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                photoEditor.redo();
             }
         });
     }
 
     public void takeData(int imageId) {
-
-//        Toast.makeText(this, "imageId" + imageId, Toast.LENGTH_SHORT).show();
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageId);
         photoEditor.addImage(bitmap);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
