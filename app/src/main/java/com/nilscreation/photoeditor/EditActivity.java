@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import ja.burhanrashid52.photoeditor.PhotoEditor;
@@ -19,7 +20,8 @@ public class EditActivity extends AppCompatActivity {
 
     PhotoEditorView photoEditorView;
     PhotoEditor photoEditor;
-    ImageView btnBack, btnUndo, btnRedo, btnExport;
+    ImageView btnBack, btnUndo, btnRedo;
+    LinearLayout btnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class EditActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
         btnUndo = findViewById(R.id.btnUndo);
         btnRedo = findViewById(R.id.btnRedo);
-        btnExport = findViewById(R.id.btnExport);
+        btnSave = findViewById(R.id.btnSave);
 
         photoEditorView.getSource().setImageURI(getIntent().getData());
 

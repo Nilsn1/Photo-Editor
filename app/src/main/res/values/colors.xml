@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#0096FF</color>
+    <color name="primary">#00C6FF</color>
     <color name="main_background">#E8EBFD</color>
-    <color name="main_background2">#F4F8F9</color>
+    <color name="card_background">#F0F0F0</color>
     <color name="secondary">#C8F7FD</color>
+    <color name="icon_color">#A7A7AA</color>
     <color name="purple">#9495FF</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
