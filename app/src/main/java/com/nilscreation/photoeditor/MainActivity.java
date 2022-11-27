@@ -3,17 +3,14 @@ package com.nilscreation.photoeditor;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button editPhoto;
     CardView btnGallery,btnCamera;
 
     @Override

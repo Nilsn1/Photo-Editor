@@ -1,12 +1,19 @@
 package com.nilscreation.photoeditor;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,27 +25,22 @@ import ja.burhanrashid52.photoeditor.PhotoEditorView;
 
 public class EditActivity extends AppCompatActivity {
 
-    PhotoEditorView photoEditorView;
-    PhotoEditor photoEditor;
-    ImageView btnBack, btnUndo, btnRedo;
-    LinearLayout btnSave;
+    StickerView stickerView;
+    ImageView mainImage;
+    LinearLayout btnAdd, btnLock, btnRemove, btnRemoveAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        photoEditorView = findViewById(R.id.photoEditorView);
-        btnBack = findViewById(R.id.btnBack);
-        btnUndo = findViewById(R.id.btnUndo);
-        btnRedo = findViewById(R.id.btnRedo);
-        btnSave = findViewById(R.id.btnSave);
+        stickerView = findViewById(R.id.sticker_view);
+        mainImage = findViewById(R.id.mainImage);
+        btnLock = findViewById(R.id.btnLock);
+        btnRemove = findViewById(R.id.btnRemove);
+        btnRemoveAll = findViewById(R.id.btnRemoveaAll);
 
-        photoEditorView.getSource().setImageURI(getIntent().getData());
-
-        photoEditor = new PhotoEditor.Builder(this, photoEditorView)
-                .setPinchTextScalable(true)
-                .build();
+        mainImage.setImageURI(getIntent().getData());
 
         //Load ListFragment
         FragmentManager fm = getSupportFragmentManager();
@@ -46,29 +48,86 @@ public class EditActivity extends AppCompatActivity {
         ft.replace(R.id.container, new ListFragment());
         ft.commit();
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        btnLock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+
+                stickerView.setLocked(!stickerView.isLocked());
+
             }
         });
-        btnUndo.setOnClickListener(new View.OnClickListener() {
+        btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                photoEditor.undo();
+                stickerView.removeCurrentSticker();
             }
         });
-        btnRedo.setOnClickListener(new View.OnClickListener() {
+        btnRemoveAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                photoEditor.redo();
+
+                stickerView.removeAllStickers();
+
             }
         });
+
+        stickerView.setOnStickerOperationListener(new StickerView.OnStickerOperationListener() {
+            @Override
+            public void onStickerAdded(@NonNull Sticker sticker) {
+                Log.d(TAG, "onStickerAdded");
+            }
+
+            @Override
+            public void onStickerClicked(@NonNull Sticker sticker) {
+                //stickerView.removeAllSticker();
+                if (sticker instanceof TextSticker) {
+                    ((TextSticker) sticker).setTextColor(Color.RED);
+                    stickerView.replace(sticker);
+                    stickerView.invalidate();
+                }
+                Log.d(TAG, "onStickerClicked");
+            }
+
+            @Override
+            public void onStickerDeleted(@NonNull Sticker sticker) {
+                Log.d(TAG, "onStickerDeleted");
+            }
+
+            @Override
+            public void onStickerDragFinished(@NonNull Sticker sticker) {
+                Log.d(TAG, "onStickerDragFinished");
+            }
+
+            @Override
+            public void onStickerTouchedDown(@NonNull Sticker sticker) {
+                Log.d(TAG, "onStickerTouchedDown");
+            }
+
+            @Override
+            public void onStickerZoomFinished(@NonNull Sticker sticker) {
+                Log.d(TAG, "onStickerZoomFinished");
+            }
+
+            @Override
+            public void onStickerFlipped(@NonNull Sticker sticker) {
+                Log.d(TAG, "onStickerFlipped");
+            }
+
+            @Override
+            public void onStickerDoubleTapped(@NonNull Sticker sticker) {
+                Log.d(TAG, "onDoubleTapped: double tap will be with two click");
+            }
+        });
+
+
     }
 
     public void takeData(int imageId) {
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageId);
-        photoEditor.addImage(bitmap);
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageId);
+//        photoEditor.addImage(bitmap);
+
+        Drawable drawable = ContextCompat.getDrawable(this, imageId);
+        stickerView.addSticker(new DrawableSticker(drawable));
 
     }
 
