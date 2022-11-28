@@ -10,21 +10,15 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import ja.burhanrashid52.photoeditor.PhotoEditor;
-import ja.burhanrashid52.photoeditor.PhotoEditorView;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -33,7 +27,7 @@ public class EditActivity extends AppCompatActivity {
     TextView lockTxt;
     LinearLayout btnLock, btnRemove, btnRemoveAll;
     Boolean locked = true;
-    SwitchCompat mode;
+    SwitchCompat switchMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +42,7 @@ public class EditActivity extends AppCompatActivity {
         btnLock = findViewById(R.id.btnLock);
         btnRemove = findViewById(R.id.btnRemove);
         btnRemoveAll = findViewById(R.id.btnRemoveaAll);
-        mode = findViewById(R.id.mode);
+        switchMode = findViewById(R.id.mode);
 
         mainImage.setImageURI(getIntent().getData());
 
@@ -58,23 +52,34 @@ public class EditActivity extends AppCompatActivity {
         ft.replace(R.id.container, new ListFragment());
         ft.commit();
 
-        mode.setOnClickListener(new View.OnClickListener() {
+        // Saving state of our app using SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        final boolean isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
+
+        // When user reopens the app after applying dark/light mode
+        if (isDarkModeOn) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            switchMode.setChecked(true);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            switchMode.setChecked(false);
+        }
+
+        switchMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (mode.isChecked()){
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_YES);
+                if (switchMode.isChecked()) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor.putBoolean("isDarkModeOn", true);
+                    editor.apply();
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    // it will set isDarkModeOn
+                    // boolean to false
+                    editor.putBoolean("isDarkModeOn", false);
+                    editor.apply();
                 }
-                else{
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_NO);
-                }
-
             }
         });
 
