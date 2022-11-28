@@ -4,6 +4,8 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -31,6 +33,7 @@ public class EditActivity extends AppCompatActivity {
     TextView lockTxt;
     LinearLayout btnLock, btnRemove, btnRemoveAll;
     Boolean locked = true;
+    SwitchCompat mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class EditActivity extends AppCompatActivity {
         btnLock = findViewById(R.id.btnLock);
         btnRemove = findViewById(R.id.btnRemove);
         btnRemoveAll = findViewById(R.id.btnRemoveaAll);
+        mode = findViewById(R.id.mode);
 
         mainImage.setImageURI(getIntent().getData());
 
@@ -53,6 +57,26 @@ public class EditActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.container, new ListFragment());
         ft.commit();
+
+        mode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (mode.isChecked()){
+                    AppCompatDelegate
+                            .setDefaultNightMode(
+                                    AppCompatDelegate
+                                            .MODE_NIGHT_YES);
+                }
+                else{
+                    AppCompatDelegate
+                            .setDefaultNightMode(
+                                    AppCompatDelegate
+                                            .MODE_NIGHT_NO);
+                }
+
+            }
+        });
 
         btnLock.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +88,7 @@ public class EditActivity extends AppCompatActivity {
                     lockImg.setImageResource(R.drawable.lock_red);
                 } else {
                     locked = true;
-                    lockTxt.setTextColor(getResources().getColor(R.color.black));
+                    lockTxt.setTextColor(getResources().getColor(R.color.text_color));
                     lockImg.setImageResource(R.drawable.lock);
 
                 }

@@ -6,6 +6,6 @@
         android:endColor="#E21E60"
         android:startColor="#FF4191" />
     <stroke android:width="3dp"
-        android:color="@color/white"/>
+        android:color="#fff"/>
 
 </shape>

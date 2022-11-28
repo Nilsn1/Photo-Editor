@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#00C6FF</color>
-    <color name="main_background">#F0F0F0</color>
-    <color name="card_background">#F0F0F0</color>
+    <color name="main_background">#141414</color>
+    <color name="card_background">#141414</color>
     <color name="secondary">#C8F7FD</color>
     <color name="purple">#9495FF</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FFF</color>
+    <color name="white">#000</color>
     <color name="blue">#0096FF</color>
     <color name="gray">#F2F2F2</color>
-    <color name="gray2">#F0F0F0</color>
     <color name="text_color">#767676</color>
-    <color name="icon_color">#000000</color>
+    <color name="icon_color">#FFFFFF</color>
+    <color name="gray2">#F0F0F0</color>
     <color name="orange">#FC5F00</color>
     <color name="green">#4ea043</color>
     <color name="red">#E10000</color>
 
     <!-- Here you can add color of your choice  -->
-    <color name="ucrop_color_toolbar">@color/white</color>
-    <color name="ucrop_color_statusbar">@color/black</color>
+    <color name="ucrop_color_toolbar">@color/black</color>
+    <color name="ucrop_color_statusbar">@color/white</color>
     <color name="ucrop_color_widget_active">@color/primary</color>
 </resources>

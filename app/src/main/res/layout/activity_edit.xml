@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray2"
+    android:background="@color/main_background"
     android:orientation="vertical"
     tools:context=".EditActivity">
 
@@ -20,9 +20,9 @@
             android:layout_width="23dp"
             android:layout_height="23dp"
             android:layout_marginStart="20dp"
-            android:src="@drawable/back"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
+            android:src="@drawable/back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,13 +31,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Photo Editor"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.nilscreation.photoeditor.StickerView
@@ -69,7 +79,7 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/card_background">
+            android:background="@color/main_background">
 
         </FrameLayout>
     </LinearLayout>
@@ -102,6 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lock"
+                android:textColor="@color/text_color"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -127,6 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Remove"
+                android:textColor="@color/text_color"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -152,6 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Remove All"
+                android:textColor="@color/text_color"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -177,6 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save"
+                android:textColor="@color/text_color"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
