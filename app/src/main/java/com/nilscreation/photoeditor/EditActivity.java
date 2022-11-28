@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ja.burhanrashid52.photoeditor.PhotoEditor;
@@ -26,8 +27,10 @@ import ja.burhanrashid52.photoeditor.PhotoEditorView;
 public class EditActivity extends AppCompatActivity {
 
     StickerView stickerView;
-    ImageView mainImage;
-    LinearLayout btnAdd, btnLock, btnRemove, btnRemoveAll;
+    ImageView btnBack, mainImage, lockImg;
+    TextView lockTxt;
+    LinearLayout btnLock, btnRemove, btnRemoveAll;
+    Boolean locked = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,10 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
 
         stickerView = findViewById(R.id.sticker_view);
+        btnBack = findViewById(R.id.btnBack);
         mainImage = findViewById(R.id.mainImage);
+        lockImg = findViewById(R.id.lockImg);
+        lockTxt = findViewById(R.id.lockTxt);
         btnLock = findViewById(R.id.btnLock);
         btnRemove = findViewById(R.id.btnRemove);
         btnRemoveAll = findViewById(R.id.btnRemoveaAll);
@@ -51,9 +57,17 @@ public class EditActivity extends AppCompatActivity {
         btnLock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 stickerView.setLocked(!stickerView.isLocked());
+                if (locked) {
+                    locked = false;
+                    lockTxt.setTextColor(getResources().getColor(R.color.red));
+                    lockImg.setImageResource(R.drawable.lock_red);
+                } else {
+                    locked = true;
+                    lockTxt.setTextColor(getResources().getColor(R.color.black));
+                    lockImg.setImageResource(R.drawable.lock);
 
+                }
             }
         });
         btnRemove.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +133,12 @@ public class EditActivity extends AppCompatActivity {
             }
         });
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
     }
 

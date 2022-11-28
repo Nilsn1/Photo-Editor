@@ -9,9 +9,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0096FF</color>
+    <color name="gray">#F2F2F2</color>
+    <color name="gray2">#F0F0F0</color>
     <color name="orange">#FC5F00</color>
     <color name="green">#4ea043</color>
-    <color name="red">#BA0000</color>
+    <color name="red">#E10000</color>
 
     <!-- Here you can add color of your choice  -->
     <color name="ucrop_color_toolbar">@color/white</color>

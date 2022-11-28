@@ -4,9 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background"
+    android:background="@color/gray2"
     android:orientation="vertical"
     tools:context=".EditActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/back"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Photo Editor"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.nilscreation.photoeditor.StickerView
         android:id="@+id/sticker_view"
@@ -60,11 +92,13 @@
             android:padding="6dp">
 
             <ImageView
+                android:id="@+id/lockImg"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:src="@drawable/lock" />
 
             <TextView
+                android:id="@+id/lockTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lock"
