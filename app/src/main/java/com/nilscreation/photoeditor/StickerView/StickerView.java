@@ -1,4 +1,4 @@
-package com.nilscreation.photoeditor;
+package com.nilscreation.photoeditor.StickerView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,16 +15,13 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
-
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.MotionEventCompat;
 import androidx.core.view.ViewCompat;
-
 import com.nilscreation.photoeditor.R;
-
 import java.io.File;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -1,12 +1,14 @@
-package com.nilscreation.photoeditor;
+package com.nilscreation.photoeditor.StickerView;
 
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 /**
  * @author wupanjie
+ * @see StickerIconEvent
  */
 
-public class DeleteIconEvent implements StickerIconEvent {
+public class HelloIconEvent implements StickerIconEvent{
   @Override public void onActionDown(StickerView stickerView, MotionEvent event) {
 
   }
@@ -16,6 +18,6 @@ public class DeleteIconEvent implements StickerIconEvent {
   }
 
   @Override public void onActionUp(StickerView stickerView, MotionEvent event) {
-    stickerView.removeCurrentSticker();
+    Toast.makeText(stickerView.getContext(), "Hello World!", Toast.LENGTH_SHORT).show();
   }
 }

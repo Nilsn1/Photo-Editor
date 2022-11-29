@@ -1,4 +1,4 @@
-package com.nilscreation.photoeditor;
+package com.nilscreation.photoeditor.StickerView;
 
 /**
  * Mofified by M.Refaat on 3/25/2018.

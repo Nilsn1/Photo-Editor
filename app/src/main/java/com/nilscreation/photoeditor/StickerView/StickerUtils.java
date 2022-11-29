@@ -1,4 +1,4 @@
-package com.nilscreation.photoeditor;
+package com.nilscreation.photoeditor.StickerView;
 
 import android.content.Context;
 import android.content.Intent;

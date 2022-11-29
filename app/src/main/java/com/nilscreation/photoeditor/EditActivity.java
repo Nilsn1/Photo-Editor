@@ -20,6 +20,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nilscreation.photoeditor.StickerView.DrawableSticker;
+import com.nilscreation.photoeditor.StickerView.Sticker;
+import com.nilscreation.photoeditor.StickerView.StickerView;
+import com.nilscreation.photoeditor.StickerView.TextSticker;
+
 public class EditActivity extends AppCompatActivity {
 
     StickerView stickerView;

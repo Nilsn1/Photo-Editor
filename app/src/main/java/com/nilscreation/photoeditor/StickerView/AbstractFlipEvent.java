@@ -1,14 +1,9 @@
-package com.nilscreation.photoeditor;
+package com.nilscreation.photoeditor.StickerView;
 
 import android.view.MotionEvent;
-import android.widget.Toast;
 
-/**
- * @author wupanjie
- * @see StickerIconEvent
- */
+public abstract class AbstractFlipEvent implements StickerIconEvent {
 
-public class HelloIconEvent implements StickerIconEvent{
   @Override public void onActionDown(StickerView stickerView, MotionEvent event) {
 
   }
@@ -18,6 +13,8 @@ public class HelloIconEvent implements StickerIconEvent{
   }
 
   @Override public void onActionUp(StickerView stickerView, MotionEvent event) {
-    Toast.makeText(stickerView.getContext(), "Hello World!", Toast.LENGTH_SHORT).show();
+    stickerView.flipCurrentSticker(getFlipDirection());
   }
+
+  @StickerView.Flip protected abstract int getFlipDirection();
 }
