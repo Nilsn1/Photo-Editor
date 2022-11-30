@@ -1,7 +1,6 @@
 package com.nilscreation.photoeditor;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -9,7 +8,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -19,7 +17,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.nilscreation.photoeditor.StickerView.DrawableSticker;
 import com.nilscreation.photoeditor.StickerView.Sticker;
 import com.nilscreation.photoeditor.StickerView.StickerView;
@@ -177,12 +174,9 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void takeData(int imageId) {
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageId);
-//        photoEditor.addImage(bitmap);
 
         Drawable drawable = ContextCompat.getDrawable(this, imageId);
         stickerView.addSticker(new DrawableSticker(drawable));
-
     }
 
     @Override
