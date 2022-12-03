@@ -72,7 +72,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/btnClassic"
+            android:id="@+id/btnCool"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -120,7 +120,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/btnCool"
+            android:id="@+id/btnOverlay"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:clickable="true"

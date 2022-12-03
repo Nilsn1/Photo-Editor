@@ -14,7 +14,6 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white">
 
-
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="23dp"
@@ -83,6 +82,12 @@
 
         </FrameLayout>
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/white"
+        android:src="@drawable/dotted_line" />
 
     <LinearLayout
         android:layout_width="match_parent"
