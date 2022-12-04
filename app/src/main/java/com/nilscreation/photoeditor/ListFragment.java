@@ -98,6 +98,11 @@ public class ListFragment extends Fragment {
         arrayeffects.add(new effects(R.drawable.zsunglasses13));
         arrayeffects.add(new effects(R.drawable.zsunglasses14));
         arrayeffects.add(new effects(R.drawable.zsunglasses15));
+        arrayeffects.add(new effects(R.drawable.zsunglasses16));
+        arrayeffects.add(new effects(R.drawable.zsunglasses17));
+        arrayeffects.add(new effects(R.drawable.zsunglasses18));
+        arrayeffects.add(new effects(R.drawable.zsunglasses19));
+        arrayeffects.add(new effects(R.drawable.zsunglasses20));
     }
 
     private void addFrames() {
@@ -117,6 +122,11 @@ public class ListFragment extends Fragment {
         arrayeffects.add(new effects(R.drawable.zframes13));
         arrayeffects.add(new effects(R.drawable.zframes14));
         arrayeffects.add(new effects(R.drawable.zframes15));
+        arrayeffects.add(new effects(R.drawable.zframes16));
+        arrayeffects.add(new effects(R.drawable.zframes17));
+        arrayeffects.add(new effects(R.drawable.zframes18));
+        arrayeffects.add(new effects(R.drawable.zframes19));
+        arrayeffects.add(new effects(R.drawable.zframes20));
     }
 
     private void addCool() {
@@ -164,5 +174,10 @@ public class ListFragment extends Fragment {
         arrayeffects.add(new effects(R.drawable.zcap13));
         arrayeffects.add(new effects(R.drawable.zcap14));
         arrayeffects.add(new effects(R.drawable.zcap15));
+        arrayeffects.add(new effects(R.drawable.zcap16));
+        arrayeffects.add(new effects(R.drawable.zcap17));
+        arrayeffects.add(new effects(R.drawable.zcap18));
+        arrayeffects.add(new effects(R.drawable.zcap19));
+        arrayeffects.add(new effects(R.drawable.zcap20));
     }
 }

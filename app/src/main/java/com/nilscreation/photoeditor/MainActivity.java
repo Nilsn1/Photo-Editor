@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 ImagePicker.with(MainActivity.this)
                         .crop()	    			//Crop image(Optional), Check Customization for more option
                         .galleryOnly()
-                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+//                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
                         .start(100);
 
             }
@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 ImagePicker.with(MainActivity.this)
                         .crop()
                         .cameraOnly()
-                        .compress(1024)
                         .start(100);
             }
         });
