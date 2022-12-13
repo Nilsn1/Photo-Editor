@@ -48,22 +48,31 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.nilscreation.photoeditor.StickerView.StickerView
-        android:id="@+id/sticker_view"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        app:showBorder="true"
-        app:showIcons="true">
-        <!-- custom, maybe you will like to put an ImageView-->
-        <ImageView
-            android:id="@+id/mainImage"
-            android:layout_width="match_parent"
+        android:gravity="center">
+
+        <com.nilscreation.photoeditor.StickerView.StickerView
+            android:id="@+id/sticker_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/nature" />
-    </com.nilscreation.photoeditor.StickerView.StickerView>
+            app:showBorder="true"
+            app:showIcons="true">
+            <!-- custom, maybe you will like to put an ImageView-->
+            <ImageView
+                android:id="@+id/mainImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/nature" />
+        </com.nilscreation.photoeditor.StickerView.StickerView>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/bottomView"

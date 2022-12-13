@@ -11,9 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -36,7 +36,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/gradient_yellow"
+                    android:background="@color/yellow"
+                    android:orientation="vertical"
                     android:gravity="center">
 
                     <ImageView
@@ -46,6 +47,7 @@
                         android:background="@drawable/white_background"
                         android:padding="15dp"
                         android:src="@drawable/gallery" />
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -64,7 +66,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/gradient_pink"
+                    android:background="@color/pink"
                     android:gravity="center">
 
                     <ImageView
@@ -88,42 +90,220 @@
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/gradient2"
+                android:background="@color/sky"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/imgShare"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/white_background"
-                    android:padding="12dp"
-                    android:src="@drawable/share" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/white_background"
-                    android:padding="12dp"
-                    android:src="@drawable/rating" />
+                    <ImageView
+                        android:id="@+id/imgShare"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="10dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/white_background2"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_share" />
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/white_background"
-                    android:padding="12dp"
-                    android:src="@drawable/info" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="10dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/white_background2"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_star" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="10dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/white_background2"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_privacy" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="10dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/white_background2"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_more" />
+                </LinearLayout>
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <!--        <androidx.cardview.widget.CardView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_weight="1"-->
+        <!--            app:cardCornerRadius="15dp"-->
+        <!--            app:cardElevation="0dp"-->
+        <!--            app:cardUseCompatPadding="true">-->
+
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:background="@drawable/border"-->
+        <!--                android:orientation="horizontal">-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/btnLock"-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_weight="1"-->
+        <!--                    android:clickable="true"-->
+        <!--                    android:foreground="?attr/selectableItemBackground"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:padding="6dp">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:id="@+id/lockImg"-->
+        <!--                        android:layout_width="28dp"-->
+        <!--                        android:layout_height="28dp"-->
+        <!--                        android:src="@drawable/ic_share"-->
+        <!--                        app:tint="@color/black" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:id="@+id/lockTxt"-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="Share"-->
+        <!--                        android:textColor="@color/black"-->
+        <!--                        android:textSize="13sp"-->
+        <!--                        android:textStyle="bold" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/btnRemove"-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_weight="1"-->
+        <!--                    android:clickable="true"-->
+        <!--                    android:foreground="?attr/selectableItemBackground"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:padding="6dp">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:layout_width="28dp"-->
+        <!--                        android:layout_height="28dp"-->
+        <!--                        android:src="@drawable/ic_star"-->
+        <!--                        app:tint="@color/black" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="Rating"-->
+        <!--                        android:textColor="@color/black"-->
+        <!--                        android:textSize="13sp"-->
+        <!--                        android:textStyle="bold" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/btnRemoveaAll"-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_weight="1"-->
+        <!--                    android:clickable="true"-->
+        <!--                    android:foreground="?attr/selectableItemBackground"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:padding="6dp">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:layout_width="29dp"-->
+        <!--                        android:layout_height="29dp"-->
+        <!--                        android:src="@drawable/ic_privacy"-->
+        <!--                        app:tint="@color/black" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="Privacy"-->
+        <!--                        android:textColor="@color/black"-->
+        <!--                        android:textSize="13sp"-->
+        <!--                        android:textStyle="bold" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/btnSave"-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_weight="1"-->
+        <!--                    android:clickable="true"-->
+        <!--                    android:foreground="?attr/selectableItemBackground"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:padding="6dp">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:layout_width="28dp"-->
+        <!--                        android:layout_height="28dp"-->
+        <!--                        android:src="@drawable/ic_more"-->
+        <!--                        app:tint="@color/black" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="More"-->
+        <!--                        android:textColor="@color/black"-->
+        <!--                        android:textSize="13sp"-->
+        <!--                        android:textStyle="bold" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--            </LinearLayout>-->
+
+        <!--        </androidx.cardview.widget.CardView>-->
 
     </LinearLayout>
 

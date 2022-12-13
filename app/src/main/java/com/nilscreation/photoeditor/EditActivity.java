@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -44,7 +46,7 @@ public class EditActivity extends AppCompatActivity {
     StickerView stickerView;
     ImageView btnBack, mainImage, lockImg;
     TextView lockTxt;
-    LinearLayout btnLock, btnRemove, btnRemoveAll, btnSave;
+    LinearLayout btnLock, btnRemove, btnRemoveAll, btnSave, mainLayout;
     Boolean locked = true;
     SwitchCompat switchMode;
     String[] permission = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"};
@@ -64,6 +66,7 @@ public class EditActivity extends AppCompatActivity {
         btnRemoveAll = findViewById(R.id.btnRemoveaAll);
         btnSave = findViewById(R.id.btnSave);
         switchMode = findViewById(R.id.mode);
+        mainLayout = findViewById(R.id.mainLayout);
 
         mainImage.setImageURI(getIntent().getData());
 
@@ -110,7 +113,7 @@ public class EditActivity extends AppCompatActivity {
                 stickerView.setLocked(!stickerView.isLocked());
                 if (locked) {
                     locked = false;
-                    lockTxt.setTextColor(getResources().getColor(R.color.red));
+                    lockTxt.setTextColor(getResources().getColor(R.color.primary));
                     lockImg.setImageResource(R.drawable.lock_red);
                 } else {
                     locked = true;
