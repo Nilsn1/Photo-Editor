@@ -146,6 +146,8 @@ public class EditActivity extends AppCompatActivity {
                     requestPermissions(permission, 80);
                 }
 
+                stickerView.setLocked(true);
+
 //                File file = FileUtil.getNewFile(EditActivity.this, "Photo_Editor");
 //                if (file != null) {
 //                    stickerView.save(file);
@@ -250,6 +252,7 @@ public class EditActivity extends AppCompatActivity {
 
                     EditActivity.this.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
                     Toast.makeText(this, "Image Saved Successfully", Toast.LENGTH_SHORT).show();
+                    stickerView.setLocked(false);
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

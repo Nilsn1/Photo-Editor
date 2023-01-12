@@ -4,16 +4,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView btnGallery,btnCamera;
+    CardView btnGallery, btnCamera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //dhaval2404 Image picker Library
                 ImagePicker.with(MainActivity.this)
-                        .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .crop()                    //Crop image(Optional), Check Customization for more option
                         .galleryOnly()
 //                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
                         .start(100);
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 100) {
             if (data.getData() != null) {
                 Uri filepath = data.getData();
-                Intent intent = new Intent(MainActivity.this,EditActivity.class);
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
                 intent.setData(filepath);
                 startActivity(intent);
             }

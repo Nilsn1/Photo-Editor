@@ -2,6 +2,7 @@
 <resources>
     <color name="primary">#FF6600</color>
     <color name="main_background">#141414</color>
+    <color name="Main_background2">#F5F5F8</color>
     <color name="card_background">#141414</color>
     <color name="secondary">#C8F7FD</color>
     <color name="purple">#9495FF</color>
