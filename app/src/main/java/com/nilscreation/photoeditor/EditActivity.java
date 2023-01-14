@@ -44,7 +44,7 @@ import java.io.OutputStream;
 public class EditActivity extends AppCompatActivity {
 
     StickerView stickerView;
-    ImageView btnBack, mainImage, lockImg;
+    ImageView btnBack, mainImage, lockImg, save;
     TextView lockTxt;
     LinearLayout btnLock, btnRemove, btnRemoveAll, btnSave, mainLayout;
     Boolean locked = true;
@@ -67,6 +67,7 @@ public class EditActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         switchMode = findViewById(R.id.mode);
         mainLayout = findViewById(R.id.mainLayout);
+        save = findViewById(R.id.save);
 
         mainImage.setImageURI(getIntent().getData());
 
@@ -211,6 +212,19 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //REQUEST PERMISSIONS
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(permission, 80);
+                }
+
+                stickerView.setLocked(true);
             }
         });
 

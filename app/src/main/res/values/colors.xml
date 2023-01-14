@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FF6600</color>
+    <color name="primary">#FF5900</color>
     <color name="secondary">#E8EBFD</color>
     <color name="main_background">#EFEFEF</color>
     <color name="Main_background2">#F5F5F8</color>
@@ -13,7 +13,7 @@
     <color name="sky">#00C6FF</color>
     <color name="gray">#F2F2F2</color>
     <color name="gray2">#F0F0F0</color>
-    <color name="text_color">#767676</color>
+    <color name="text_color">#50575D</color>
     <color name="text_dark">#17244D</color>
     <color name="icon_color">#000000</color>
     <color name="yellow">#FEB501</color>

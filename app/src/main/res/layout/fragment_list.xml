@@ -31,11 +31,12 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="6dp">
+                android:paddingTop="3dp"
+                android:paddingBottom="5dp">
 
                 <ImageView
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/zsunglasses8" />
 
                 <TextView
@@ -43,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:text="Sunglasses"
                     android:textColor="@color/text_color"
+                    android:fontFamily="@font/nunito_bold"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -55,11 +57,12 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="6dp">
+                android:paddingTop="3dp"
+                android:paddingBottom="5dp">
 
                 <ImageView
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/zframes25" />
 
                 <TextView
@@ -67,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:text="Frames"
                     android:textColor="@color/text_color"
+                    android:fontFamily="@font/nunito_bold"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -79,11 +83,12 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="6dp">
+                android:paddingTop="3dp"
+                android:paddingBottom="5dp">
 
                 <ImageView
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/zcool4" />
 
                 <TextView
@@ -91,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:text="Cool"
                     android:textColor="@color/text_color"
+                    android:fontFamily="@font/nunito_bold"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -103,11 +109,12 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="6dp">
+                android:paddingTop="3dp"
+                android:paddingBottom="5dp">
 
                 <ImageView
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/zgirls1" />
 
                 <TextView
@@ -115,6 +122,7 @@
                     android:layout_height="wrap_content"
                     android:text="Girls"
                     android:textColor="@color/text_color"
+                    android:fontFamily="@font/nunito_bold"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -127,11 +135,12 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="6dp">
+                android:paddingTop="3dp"
+                android:paddingBottom="5dp">
 
                 <ImageView
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/zcap3" />
 
                 <TextView
@@ -139,6 +148,7 @@
                     android:layout_height="wrap_content"
                     android:text="Hat"
                     android:textColor="@color/text_color"
+                    android:fontFamily="@font/nunito_bold"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
