@@ -11,6 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
 
@@ -19,7 +26,8 @@ public class ListFragment extends Fragment {
     RecyclerView recyclerView;
     Context context;
     ArrayList<effects> arrayeffects = new ArrayList<>();
-    LinearLayout btnSunglasses, btnFrames, btnCool, btnGirls, btnHats;
+    LinearLayout btnSunglasses, btnFrames, btnCool, btnGirls, btnHats, btnPremium;
+    AdView mAdView;
 
     public ListFragment() {
         // Required empty public constructor
@@ -35,7 +43,18 @@ public class ListFragment extends Fragment {
         btnCool = view.findViewById(R.id.btnCool);
         btnGirls = view.findViewById(R.id.btnGirls);
         btnHats = view.findViewById(R.id.btnHat);
+        btnPremium = view.findViewById(R.id.btnPremium);
         recyclerView = view.findViewById(R.id.recyclerview);
+
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         recyclerView.setLayoutManager(new LinearLayoutManager((context), LinearLayoutManager.HORIZONTAL, false));
 
@@ -79,6 +98,13 @@ public class ListFragment extends Fragment {
             public void onClick(View view) {
                 addHats();
                 setadapter();
+            }
+        });
+
+        btnPremium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Coming Soon...", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ListFragment">
 
@@ -35,16 +36,16 @@
                 android:paddingBottom="5dp">
 
                 <ImageView
-                    android:layout_width="30dp"
+                    android:layout_width="35dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/zsunglasses8" />
+                    android:src="@drawable/zsunglasses3" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
                     android:text="Sunglasses"
                     android:textColor="@color/text_color"
-                    android:fontFamily="@font/nunito_bold"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -61,16 +62,16 @@
                 android:paddingBottom="5dp">
 
                 <ImageView
-                    android:layout_width="30dp"
+                    android:layout_width="35dp"
                     android:layout_height="30dp"
                     android:src="@drawable/zframes25" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
                     android:text="Frames"
                     android:textColor="@color/text_color"
-                    android:fontFamily="@font/nunito_bold"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -87,16 +88,16 @@
                 android:paddingBottom="5dp">
 
                 <ImageView
-                    android:layout_width="30dp"
+                    android:layout_width="35dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/zcool4" />
+                    android:src="@drawable/zcool14" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
                     android:text="Cool"
                     android:textColor="@color/text_color"
-                    android:fontFamily="@font/nunito_bold"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -113,16 +114,16 @@
                 android:paddingBottom="5dp">
 
                 <ImageView
-                    android:layout_width="30dp"
+                    android:layout_width="35dp"
                     android:layout_height="30dp"
                     android:src="@drawable/zgirls1" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
                     android:text="Girls"
                     android:textColor="@color/text_color"
-                    android:fontFamily="@font/nunito_bold"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -139,16 +140,42 @@
                 android:paddingBottom="5dp">
 
                 <ImageView
-                    android:layout_width="30dp"
+                    android:layout_width="35dp"
                     android:layout_height="30dp"
                     android:src="@drawable/zcap3" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
                     android:text="Hat"
                     android:textColor="@color/text_color"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnPremium"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="3dp"
+                android:paddingBottom="5dp">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/zpremium1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_bold"
+                    android:text="Premium"
+                    android:textColor="@color/text_color"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -156,5 +183,18 @@
         </LinearLayout>
 
     </HorizontalScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </com.google.android.gms.ads.AdView>
 
 </LinearLayout>
