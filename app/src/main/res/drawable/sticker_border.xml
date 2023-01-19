@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <corners android:radius="10dp" />
+    <corners android:radius="8dp" />
 
-<!--    <stroke-->
-<!--        android:width="0.8dp"-->
-<!--        android:color="#CDCDCD" />-->
+    <!--    <stroke-->
+    <!--        android:width="0.8dp"-->
+    <!--        android:color="#CDCDCD" />-->
 
-    <solid android:color="@color/main_background"/>
+    <solid android:color="@color/sticker_background" />
 
 </shape>

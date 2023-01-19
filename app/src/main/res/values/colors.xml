@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#FF5900</color>
-    <color name="secondary">#E8EBFD</color>
     <color name="main_background">#EFEFEF</color>
-    <color name="Main_background2">#F5F5F8</color>
-    <color name="card_background">#E8E8E8</color>
-    <color name="purple">#8677FE</color>
-    <color name="purple_light">#9495FF</color>
+    <color name="card_background">#fff</color>
+    <color name="sticker_background">#EFEFEF</color>
+    <color name="navbar">#fff</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue">#0096FF</color>
-    <color name="sky">#00C6FF</color>
-    <color name="gray">#F2F2F2</color>
-    <color name="gray2">#F0F0F0</color>
+    <color name="main_buttons">#1E1F23</color>
+    <color name="main_text">#000000</color>
     <color name="text_color">#50575D</color>
-    <color name="text_dark">#17244D</color>
-    <color name="icon_color">#000000</color>
-    <color name="yellow">#FEB501</color>
-    <color name="pink">#F21D4D</color>
-    <color name="orange">#FC5F00</color>
-    <color name="green">#4ea043</color>
-    <color name="red">#E10000</color>
+    <color name="icon_color">#000</color>
 
     <!-- Here you can add color of your choice  -->
     <color name="ucrop_color_toolbar">@color/white</color>
