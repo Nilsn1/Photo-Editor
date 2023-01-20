@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#FF5900</color>
-    <color name="main_background">#EFEFEF</color>
+    <color name="main_background">#fff</color>
     <color name="card_background">#fff</color>
-    <color name="sticker_background">#EFEFEF</color>
-    <color name="navbar">#fff</color>
+    <color name="sticker_background">#FAFAFA</color>
+    <color name="navbar">#FAFAFA</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="main_buttons">#1E1F23</color>
-    <color name="main_text">#000000</color>
+    <color name="main_buttons">#FAFAFA</color>
+    <color name="border_color">#EDEDED</color>
+    <color name="border_dotted">#EDEDED</color>
+    <color name="sticker_border">#EDEDED</color>
+    <color name="main_text">#26272B</color>
     <color name="text_color">#50575D</color>
     <color name="icon_color">#000</color>
+    <color name="yellow">#FEB501</color>
+    <color name="pink">#F21D4D</color>
+    <color name="purple">#7462F9</color>
 
     <!-- Here you can add color of your choice  -->
     <color name="ucrop_color_toolbar">@color/white</color>

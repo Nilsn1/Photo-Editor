@@ -4,7 +4,7 @@
 
     <stroke
         android:width="1dp"
-        android:color="#E4E4E4"
+        android:color="@color/border_dotted"
         android:dashWidth="4dp"
         android:dashGap="3dp" />
 </shape>
