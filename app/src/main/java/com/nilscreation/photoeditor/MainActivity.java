@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     CardView btnGallery, btnCamera;
     ImageSlider imageSlider;
     AdView mAdView;
+    ImageView settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         imageSlider = findViewById(R.id.image_slider);
         btnGallery = findViewById(R.id.btnGallery);
         btnCamera = findViewById(R.id.btnCamera);
+        settings = findViewById(R.id.settings);
 
         ArrayList<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.goggles, ScaleTypes.FIT));
@@ -69,6 +72,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override

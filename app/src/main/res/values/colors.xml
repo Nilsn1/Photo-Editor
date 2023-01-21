@@ -2,6 +2,7 @@
 <resources>
     <color name="primary">#FF5900</color>
     <color name="main_background">#fff</color>
+    <color name="main_background2">#EFEFEF</color>
     <color name="card_background">#fff</color>
     <color name="sticker_background">#FAFAFA</color>
     <color name="navbar">#FAFAFA</color>
@@ -12,11 +13,12 @@
     <color name="border_dotted">#EDEDED</color>
     <color name="sticker_border">#EDEDED</color>
     <color name="main_text">#26272B</color>
-    <color name="text_color">#50575D</color>
+    <color name="text_color">#404449</color>
     <color name="icon_color">#000</color>
     <color name="yellow">#FEB501</color>
     <color name="pink">#F21D4D</color>
     <color name="purple">#7462F9</color>
+    <color name="ic_color">#7D858E</color>
 
     <!-- Here you can add color of your choice  -->
     <color name="ucrop_color_toolbar">@color/white</color>

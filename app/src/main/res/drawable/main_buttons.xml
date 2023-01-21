@@ -5,7 +5,7 @@
     <solid android:color="@color/main_buttons" />
 
     <stroke
-        android:width="3dp"
+        android:width="2.8dp"
         android:color="@color/border_color" />
 
 </shape>

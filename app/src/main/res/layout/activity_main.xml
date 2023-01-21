@@ -106,13 +106,14 @@
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/yellow"
                     app:cardCornerRadius="100dp"
-                    app:cardElevation="0dp">
+                    app:cardElevation="5dp">
 
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:padding="10dp"
-                        android:src="@drawable/gallery" />
+                        android:padding="12dp"
+                        android:src="@drawable/ic_gallery"
+                        app:tint="@color/white" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -122,7 +123,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/baloo_bhai_2_extrabold"
                     android:text="Gallery"
-                    android:textColor="@color/main_text"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -155,13 +156,14 @@
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/pink"
                     app:cardCornerRadius="100dp"
-                    app:cardElevation="0dp">
+                    app:cardElevation="5dp">
 
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:padding="10dp"
-                        android:src="@drawable/camera" />
+                        android:padding="12dp"
+                        android:src="@drawable/ic_camera"
+                        app:tint="@color/white" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -171,7 +173,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/baloo_bhai_2_extrabold"
                     android:text="Camera"
-                    android:textColor="@color/main_text"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -204,13 +206,14 @@
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/purple"
                     app:cardCornerRadius="100dp"
-                    app:cardElevation="0dp">
+                    app:cardElevation="5dp">
 
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_more" />
+                        android:padding="12dp"
+                        android:src="@drawable/ic_more"
+                        app:tint="@color/white" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -220,7 +223,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/baloo_bhai_2_extrabold"
                     android:text="More Apps"
-                    android:textColor="@color/main_text"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
 
             </LinearLayout>

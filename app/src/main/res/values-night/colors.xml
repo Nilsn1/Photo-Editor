@@ -2,6 +2,7 @@
 <resources>
     <color name="primary">#FF6600</color>
     <color name="main_background">#000</color>
+    <color name="main_background2">#000</color>
     <color name="card_background">#141519</color>
     <color name="sticker_background">#1E1F23</color>
     <color name="navbar">#141519</color>
