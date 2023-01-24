@@ -29,6 +29,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.nilscreation.photoeditor.StickerView.DrawableSticker;
 import com.nilscreation.photoeditor.StickerView.Sticker;
 import com.nilscreation.photoeditor.StickerView.StickerView;
@@ -48,8 +56,8 @@ public class EditActivity extends AppCompatActivity {
     TextView lockTxt;
     LinearLayout btnLock, btnRemove, btnRemoveAll, btnSave, mainLayout;
     Boolean locked = true;
-    SwitchCompat switchMode;
     String[] permission = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"};
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +73,18 @@ public class EditActivity extends AppCompatActivity {
         btnRemove = findViewById(R.id.btnRemove);
         btnRemoveAll = findViewById(R.id.btnRemoveaAll);
         btnSave = findViewById(R.id.btnSave);
-        switchMode = findViewById(R.id.mode);
         mainLayout = findViewById(R.id.mainLayout);
         save = findViewById(R.id.save);
 
         mainImage.setImageURI(getIntent().getData());
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mInterstitialAd();
 
         //Load ListFragment
         FragmentManager fm = getSupportFragmentManager();
@@ -85,28 +100,9 @@ public class EditActivity extends AppCompatActivity {
         // When user reopens the app after applying dark/light mode
         if (isDarkModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            switchMode.setChecked(true);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            switchMode.setChecked(false);
         }
-
-        switchMode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (switchMode.isChecked()) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    editor.putBoolean("isDarkModeOn", true);
-                    editor.apply();
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    // it will set isDarkModeOn
-                    // boolean to false
-                    editor.putBoolean("isDarkModeOn", false);
-                    editor.apply();
-                }
-            }
-        });
 
         btnLock.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,14 +145,6 @@ public class EditActivity extends AppCompatActivity {
 
                 stickerView.setLocked(true);
 
-//                File file = FileUtil.getNewFile(EditActivity.this, "Photo_Editor");
-//                if (file != null) {
-//                    stickerView.save(file);
-//                    Toast.makeText(EditActivity.this, "saved in " + file.getAbsolutePath(),
-//                            Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(EditActivity.this, "the file is null", Toast.LENGTH_SHORT).show();
-//                }
             }
         });
 
@@ -225,6 +213,25 @@ public class EditActivity extends AppCompatActivity {
                 }
 
                 stickerView.setLocked(true);
+
+                //SHOW INTERSTITIAL AD
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(EditActivity.this);
+
+                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                        @Override
+                        public void onAdDismissedFullScreenContent() {
+                            super.onAdDismissedFullScreenContent();
+
+                            mInterstitialAd = null;
+                            mInterstitialAd();
+                        }
+                    });
+
+                } else {
+                    Toast.makeText(EditActivity.this, "ad not ready", Toast.LENGTH_SHORT).show();
+                    mInterstitialAd();
+                }
             }
         });
 
@@ -234,6 +241,26 @@ public class EditActivity extends AppCompatActivity {
 
         Drawable drawable = ContextCompat.getDrawable(this, imageId);
         stickerView.addSticker(new DrawableSticker(drawable));
+    }
+
+    private void mInterstitialAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(EditActivity.this, "ca-app-pub-3940256099942544/1033173712", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                mInterstitialAd = interstitialAd;
+                Toast.makeText(EditActivity.this, "loaded", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                mInterstitialAd = null;
+            }
+        });
     }
 
     @Override

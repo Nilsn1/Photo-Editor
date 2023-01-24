@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView btnGallery, btnCamera;
+    CardView btnGallery, btnCamera, btnMore;
     ImageSlider imageSlider;
     AdView mAdView;
     ImageView settings;
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         imageSlider = findViewById(R.id.image_slider);
         btnGallery = findViewById(R.id.btnGallery);
         btnCamera = findViewById(R.id.btnCamera);
+        btnMore = findViewById(R.id.btnMore);
         settings = findViewById(R.id.settings);
 
         ArrayList<SlideModel> slideModels = new ArrayList<>();
@@ -108,6 +109,16 @@ public class MainActivity extends AppCompatActivity {
                         .crop()
                         .cameraOnly()
                         .start(100);
+            }
+        });
+
+        btnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://play.google.com/store/apps/developer?id=Nils+Creation";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
             }
         });
     }

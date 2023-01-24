@@ -2,17 +2,17 @@
 <resources>
     <color name="primary">#FF5900</color>
     <color name="main_background">#fff</color>
-    <color name="main_background2">#EFEFEF</color>
+    <color name="main_background2">#EDEDED</color>
     <color name="card_background">#fff</color>
     <color name="sticker_background">#FAFAFA</color>
+    <color name="sticker_border">#EDEDED</color>
     <color name="navbar">#FAFAFA</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main_buttons">#FAFAFA</color>
     <color name="border_color">#EDEDED</color>
     <color name="border_dotted">#EDEDED</color>
-    <color name="sticker_border">#EDEDED</color>
-    <color name="main_text">#26272B</color>
+    <color name="main_text">#000000</color>
     <color name="text_color">#404449</color>
     <color name="icon_color">#000</color>
     <color name="yellow">#FEB501</color>
