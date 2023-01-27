@@ -268,6 +268,18 @@ public class ListFragment extends Fragment {
         arrayeffects.add(new effects(R.drawable.zpremium4));
         arrayeffects.add(new effects(R.drawable.zpremium5));
         arrayeffects.add(new effects(R.drawable.zpremium6));
+        arrayeffects.add(new effects(R.drawable.zpremium7));
+        arrayeffects.add(new effects(R.drawable.zpremium8));
+        arrayeffects.add(new effects(R.drawable.zpremium9));
+        arrayeffects.add(new effects(R.drawable.zpremium10));
+        arrayeffects.add(new effects(R.drawable.zpremium11));
+        arrayeffects.add(new effects(R.drawable.zpremium12));
+        arrayeffects.add(new effects(R.drawable.zpremium13));
+        arrayeffects.add(new effects(R.drawable.zpremium14));
+        arrayeffects.add(new effects(R.drawable.zpremium15));
+        arrayeffects.add(new effects(R.drawable.zpremium16));
+        arrayeffects.add(new effects(R.drawable.zpremium17));
+        arrayeffects.add(new effects(R.drawable.zpremium18));
     }
 
     private void addGirlsglasses() {

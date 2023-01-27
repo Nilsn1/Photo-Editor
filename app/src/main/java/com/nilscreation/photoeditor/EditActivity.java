@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
@@ -275,8 +276,13 @@ public class EditActivity extends AppCompatActivity {
         if (requestCode == 80) {
             if (grantResults[0] == getPackageManager().PERMISSION_GRANTED) {
 
-                stickerView.setDrawingCacheEnabled(true);
-                Bitmap bitmap = stickerView.getDrawingCache();
+//                stickerView.setDrawingCacheEnabled(true);
+//                Bitmap bitmap = stickerView.getDrawingCache();
+
+                // Create a bitmap of the layout
+                Bitmap bitmap = Bitmap.createBitmap(stickerView.getWidth(), stickerView.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                stickerView.draw(canvas);
 
                 OutputStream outStream = null;
                 File filepath = Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES);
