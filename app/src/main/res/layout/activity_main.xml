@@ -63,8 +63,8 @@
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/image_slider"
             android:layout_width="wrap_content"
-            android:layout_height="220dp"
-            android:visibility="gone"
+            android:layout_height="285dp"
+            android:padding="20dp"
             app:iss_auto_cycle="true"
             app:iss_delay="0"
             app:iss_period="1000" />
@@ -74,7 +74,8 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:padding="30dp"
-            android:src="@drawable/sunglasses" />
+            android:src="@drawable/sunglasses"
+            android:visibility="gone" />
 
     </LinearLayout>
 

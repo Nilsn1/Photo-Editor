@@ -46,9 +46,11 @@ public class MainActivity extends AppCompatActivity {
         settings = findViewById(R.id.settings);
 
         ArrayList<SlideModel> slideModels = new ArrayList<>();
-        slideModels.add(new SlideModel(R.drawable.goggles, ScaleTypes.FIT));
-        slideModels.add(new SlideModel(R.drawable.goggles, ScaleTypes.FIT));
-        slideModels.add(new SlideModel(R.drawable.goggles, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.FIT));
+
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
 

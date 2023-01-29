@@ -149,6 +149,17 @@ public class EditActivity extends AppCompatActivity {
             }
         });
 
+        mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (stickerView.isSelected()) {
+                    stickerView.setSelected(false);
+                } else {
+                    stickerView.setSelected(true);
+                }
+            }
+        });
+
         stickerView.setOnStickerOperationListener(new StickerView.OnStickerOperationListener() {
             @Override
             public void onStickerAdded(@NonNull Sticker sticker) {
