@@ -15,13 +15,16 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
+
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.MotionEventCompat;
 import androidx.core.view.ViewCompat;
+
 import com.nilscreation.photoeditor.R;
+
 import java.io.File;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -128,6 +131,7 @@ public class StickerView extends FrameLayout {
 
             borderPaint.setAntiAlias(true);
             borderPaint.setColor(a.getColor(R.styleable.StickerView_borderColor, (getResources().getColor(R.color.primary))));
+            borderPaint.setStrokeWidth(7f);
             borderPaint.setAlpha(a.getInteger(R.styleable.StickerView_borderAlpha, 255));
 
             configDefaultIcons();
