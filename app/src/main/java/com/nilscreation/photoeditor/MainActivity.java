@@ -7,6 +7,9 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -25,14 +28,26 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.model.FileHeader;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     CardView btnGallery, btnCamera, btnMore;
     ImageSlider imageSlider;
     AdView mAdView;
-    ImageView settings;
+    ImageView settings, imggallery;
+    private static final String PASSWORD = "nilsglasses";
+
+
+    private ArrayList<Bitmap> pngImages = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +59,67 @@ public class MainActivity extends AppCompatActivity {
         btnCamera = findViewById(R.id.btnCamera);
         btnMore = findViewById(R.id.btnMore);
         settings = findViewById(R.id.settings);
+        imggallery = findViewById(R.id.imggallery);
 
         ArrayList<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.FIT));
+
+        // Load the ZIP file from assets
+        AssetManager assetManager = getAssets();
+        InputStream inputStream = null;
+        try {
+            inputStream = assetManager.open("cool.zip");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Create a temporary file to extract the contents of the ZIP file
+        File tempFile = new File(getCacheDir(), "cool.zip");
+        try {
+            FileOutputStream outputStream = new FileOutputStream(tempFile);
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, read);
+            }
+            outputStream.flush();
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Extract the contents of the ZIP file
+        ZipFile zipFile = null;
+        try {
+            zipFile = new ZipFile(tempFile);
+            if (zipFile.isEncrypted()) {
+                zipFile.setPassword(PASSWORD.toCharArray());
+            }
+            List<FileHeader> fileHeaders = zipFile.getFileHeaders();
+            for (FileHeader fileHeader : fileHeaders) {
+                if (fileHeader.getFileName().endsWith(".png")) {
+                    InputStream imageStream = zipFile.getInputStream(fileHeader);
+                    Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+                    pngImages.add(bitmap);
+
+                    Toast.makeText(this, " " + bitmap, Toast.LENGTH_SHORT).show();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (zipFile != null) {
+                try {
+                    zipFile.getInputStream(zipFile.getFileHeader("cool.zip")).close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);

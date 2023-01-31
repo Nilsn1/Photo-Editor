@@ -118,6 +118,7 @@
                     app:cardElevation="5dp">
 
                     <ImageView
+                        android:id="@+id/imggallery"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:padding="12dp"
