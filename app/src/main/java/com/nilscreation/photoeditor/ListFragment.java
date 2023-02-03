@@ -242,6 +242,38 @@ public class ListFragment extends Fragment {
 
     private void addCool() {
         arrayeffects.removeAll(arrayeffects);
+//        arrayeffects.add(new effects(R.drawable.zfunny1));
+//        arrayeffects.add(new effects(R.drawable.zfunny2));
+//        arrayeffects.add(new effects(R.drawable.zfunny3));
+//        arrayeffects.add(new effects(R.drawable.zfunny4));
+//        arrayeffects.add(new effects(R.drawable.zfunny5));
+//        arrayeffects.add(new effects(R.drawable.zfunny6));
+//        arrayeffects.add(new effects(R.drawable.zfunny7));
+//        arrayeffects.add(new effects(R.drawable.zfunny8));
+//        arrayeffects.add(new effects(R.drawable.zfunny9));
+//        arrayeffects.add(new effects(R.drawable.zfunny10));
+//        arrayeffects.add(new effects(R.drawable.zfunny11));
+//        arrayeffects.add(new effects(R.drawable.zfunny12));
+//        arrayeffects.add(new effects(R.drawable.zfunny13));
+//        arrayeffects.add(new effects(R.drawable.zfunny14));
+//        arrayeffects.add(new effects(R.drawable.zfunny15));
+//        arrayeffects.add(new effects(R.drawable.zfunny16));
+//        arrayeffects.add(new effects(R.drawable.zfunny17));
+//        arrayeffects.add(new effects(R.drawable.zfunny18));
+//        arrayeffects.add(new effects(R.drawable.zfunny19));
+//        arrayeffects.add(new effects(R.drawable.zfunny20));
+//        arrayeffects.add(new effects(R.drawable.zfunny21));
+//        arrayeffects.add(new effects(R.drawable.zfunny22));
+//        arrayeffects.add(new effects(R.drawable.zfunny23));
+//        arrayeffects.add(new effects(R.drawable.zfunny24));
+//        arrayeffects.add(new effects(R.drawable.zfunny25));
+//        arrayeffects.add(new effects(R.drawable.zfunny26));
+//        arrayeffects.add(new effects(R.drawable.zfunny27));
+//        arrayeffects.add(new effects(R.drawable.zfunny28));
+//        arrayeffects.add(new effects(R.drawable.zfunny29));
+//        arrayeffects.add(new effects(R.drawable.zfunny30));
+//        arrayeffects.add(new effects(R.drawable.zfunny31));
+
         arrayeffects.add(new effects(R.drawable.zcool1));
         arrayeffects.add(new effects(R.drawable.zcool2));
         arrayeffects.add(new effects(R.drawable.zcool3));

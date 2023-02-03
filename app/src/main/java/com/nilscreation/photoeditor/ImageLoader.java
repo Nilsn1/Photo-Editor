@@ -1,45 +1,80 @@
 package com.nilscreation.photoeditor;
 
+
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.widget.Toast;
 
-import net.lingala.zip4j.io.inputstream.ZipInputStream;
-import net.lingala.zip4j.model.LocalFileHeader;
+import com.nilscreation.photoeditor.Adapter.glassesAdapter;
 
-import java.io.BufferedInputStream;
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.model.FileHeader;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ImageLoader {
-    private static final int BUFFER_SIZE = 1024;
-    private static final String ZIP_FILE = "cool.zip";
-    private static final String ZIP_PASSWORD = "nilsglasses";
-    private ArrayList<Bitmap> mBitmaps = new ArrayList<>();
-    private Context mContext;
+    private ArrayList<Bitmap> pngImages = new ArrayList<>();
+    private static final String PASSWORD = "nilsglasses";
 
-    public ImageLoader(Context context) {
-        mContext = context;
-    }
+    public ArrayList<Bitmap> loadImages(Context context) {
+        // Load the ZIP file from assets
+        AssetManager assetManager = context.getAssets();
+        InputStream inputStream = null;
 
-    public ArrayList<Bitmap> loadImages() {
         try {
-            InputStream is = mContext.getAssets().open(ZIP_FILE);
-            ZipInputStream zis = new ZipInputStream(new BufferedInputStream(is));
-            zis.setPassword(ZIP_PASSWORD.toCharArray());
-            LocalFileHeader entry;
-            while ((entry = zis.getNextEntry()) != null) {
-                if (!entry.isDirectory()) {
-                    Bitmap bitmap = BitmapFactory.decodeStream(zis);
-                    mBitmaps.add(bitmap);
-                    Toast.makeText(mContext, " " + bitmap, Toast.LENGTH_SHORT).show();
-                }
-                zis.close();
-            }
-            zis.close();
-        } catch (Exception e) {
+            inputStream = assetManager.open("cool.zip");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return mBitmaps;
+
+        // Create a temporary file to extract the contents of the ZIP file
+        File tempFile = new File(context.getCacheDir(), "cool.zip");
+        try {
+            FileOutputStream outputStream = new FileOutputStream(tempFile);
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, read);
+            }
+            outputStream.flush();
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Extract the contents of the ZIP file
+        ZipFile zipFile = null;
+        try {
+            zipFile = new ZipFile(tempFile);
+            if (zipFile.isEncrypted()) {
+                zipFile.setPassword(PASSWORD.toCharArray());
+            }
+            List<FileHeader> fileHeaders = zipFile.getFileHeaders();
+            for (FileHeader fileHeader : fileHeaders) {
+                if (fileHeader.getFileName().endsWith(".png")) {
+                    InputStream imageStream = zipFile.getInputStream(fileHeader);
+                    Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+                    pngImages.add(bitmap);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (zipFile != null) {
+                try {
+                    zipFile.getInputStream(zipFile.getFileHeader("cool.zip")).close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return pngImages;
     }
 }

@@ -4,39 +4,29 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.nilscreation.photoeditor.Adapter.glassesAdapter;
 
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.model.FileHeader;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     AdView mAdView;
     ImageView settings, imggallery;
     private static final String PASSWORD = "nilsglasses";
+
+    RecyclerView recyclerView;
 
 
     private ArrayList<Bitmap> pngImages = new ArrayList<>();
@@ -60,66 +52,77 @@ public class MainActivity extends AppCompatActivity {
         btnMore = findViewById(R.id.btnMore);
         settings = findViewById(R.id.settings);
         imggallery = findViewById(R.id.imggallery);
+        recyclerView = findViewById(R.id.recyclerview);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager((this), LinearLayoutManager.HORIZONTAL, false));
+
 
         ArrayList<SlideModel> slideModels = new ArrayList<>();
-        slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.FIT));
-        slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.FIT));
-        slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.FIT));
-        slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.CENTER_INSIDE));
+        slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.CENTER_INSIDE));
+        slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.CENTER_INSIDE));
+        slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.CENTER_INSIDE));
 
-        // Load the ZIP file from assets
-        AssetManager assetManager = getAssets();
-        InputStream inputStream = null;
-        try {
-            inputStream = assetManager.open("cool.zip");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ImageLoader imageLoader = new ImageLoader();
+        pngImages = imageLoader.loadImages(MainActivity.this);
 
-        // Create a temporary file to extract the contents of the ZIP file
-        File tempFile = new File(getCacheDir(), "cool.zip");
-        try {
-            FileOutputStream outputStream = new FileOutputStream(tempFile);
-            byte[] buffer = new byte[1024];
-            int read;
-            while ((read = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, read);
-            }
-            outputStream.flush();
-            outputStream.close();
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        glassesAdapter adapter = new glassesAdapter(MainActivity.this, pngImages);
+        recyclerView.setAdapter(adapter);
 
-        // Extract the contents of the ZIP file
-        ZipFile zipFile = null;
-        try {
-            zipFile = new ZipFile(tempFile);
-            if (zipFile.isEncrypted()) {
-                zipFile.setPassword(PASSWORD.toCharArray());
-            }
-            List<FileHeader> fileHeaders = zipFile.getFileHeaders();
-            for (FileHeader fileHeader : fileHeaders) {
-                if (fileHeader.getFileName().endsWith(".png")) {
-                    InputStream imageStream = zipFile.getInputStream(fileHeader);
-                    Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
-                    pngImages.add(bitmap);
-
-                    Toast.makeText(this, " " + bitmap, Toast.LENGTH_SHORT).show();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (zipFile != null) {
-                try {
-                    zipFile.getInputStream(zipFile.getFileHeader("cool.zip")).close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+//        // Load the ZIP file from assets
+//        AssetManager assetManager = getAssets();
+//        InputStream inputStream = null;
+//        try {
+//            inputStream = assetManager.open("cool.zip");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        // Create a temporary file to extract the contents of the ZIP file
+//        File tempFile = new File(getCacheDir(), "cool.zip");
+//        try {
+//            FileOutputStream outputStream = new FileOutputStream(tempFile);
+//            byte[] buffer = new byte[1024];
+//            int read;
+//            while ((read = inputStream.read(buffer)) != -1) {
+//                outputStream.write(buffer, 0, read);
+//            }
+//            outputStream.flush();
+//            outputStream.close();
+//            inputStream.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        // Extract the contents of the ZIP file
+//        ZipFile zipFile = null;
+//        try {
+//            zipFile = new ZipFile(tempFile);
+//            if (zipFile.isEncrypted()) {
+//                zipFile.setPassword(PASSWORD.toCharArray());
+//            }
+//            List<FileHeader> fileHeaders = zipFile.getFileHeaders();
+//            for (FileHeader fileHeader : fileHeaders) {
+//                if (fileHeader.getFileName().endsWith(".png")) {
+//                    InputStream imageStream = zipFile.getInputStream(fileHeader);
+//                    Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+//                    pngImages.add(bitmap);
+//
+//                    glassesAdapter adapter = new glassesAdapter(MainActivity.this, pngImages);
+//                    recyclerView.setAdapter(adapter);
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (zipFile != null) {
+//                try {
+//                    zipFile.getInputStream(zipFile.getFileHeader("cool.zip")).close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
 
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);

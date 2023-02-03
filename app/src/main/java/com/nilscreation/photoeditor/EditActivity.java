@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -23,6 +24,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -241,7 +243,7 @@ public class EditActivity extends AppCompatActivity {
                     });
 
                 } else {
-                    Toast.makeText(EditActivity.this, "ad not ready", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(EditActivity.this, "ad not ready", Toast.LENGTH_SHORT).show();
                     mInterstitialAd();
                 }
             }
@@ -264,7 +266,7 @@ public class EditActivity extends AppCompatActivity {
                 // The mInterstitialAd reference will be null until
                 // an ad is loaded.
                 mInterstitialAd = interstitialAd;
-                Toast.makeText(EditActivity.this, "loaded", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(EditActivity.this, "loaded", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -295,33 +297,57 @@ public class EditActivity extends AppCompatActivity {
                 Canvas canvas = new Canvas(bitmap);
                 stickerView.draw(canvas);
 
-                OutputStream outStream = null;
-                File filepath = Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES);
-                File dir = new File(filepath.getAbsolutePath() + "/Glasses Photo Editor/");
-                dir.mkdir();
-
-                File file = new File(dir, "Photo_" + System.currentTimeMillis() + ".jpg");
-
-                try {
-                    outStream = new FileOutputStream(file);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-                    outStream.flush();
-                    outStream.close();
-
-                    EditActivity.this.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-                    Toast.makeText(this, "Image Saved Successfully", Toast.LENGTH_SHORT).show();
-                    stickerView.setLocked(false);
-
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "Save Failed", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "Save Failed", Toast.LENGTH_SHORT).show();
-                }
+                saveImageToGallery(bitmap);
             }
         } else {
             Toast.makeText(EditActivity.this, "Save cancel", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void saveImageToGallery(Bitmap imageBitmap) {
+        String savedImagePath;
+        String imageFileName = "Photo_" + System.currentTimeMillis() + ".jpg";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.Images.Media.DISPLAY_NAME, imageFileName);
+            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+            values.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/PhotoEditor");
+            Uri imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            try (OutputStream os = getContentResolver().openOutputStream(imageUri)) {
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                Toast.makeText(this, "Image Saved", Toast.LENGTH_SHORT).show();
+                stickerView.setLocked(false);
+            } catch (IOException e) {
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+            }
+            savedImagePath = imageUri.toString();
+        } else {
+            File storageDir = new File(
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                    "PhotoEditor");
+            if (!storageDir.exists()) {
+                storageDir.mkdirs();
+            }
+            File imageFile = new File(storageDir, imageFileName);
+            savedImagePath = imageFile.getAbsolutePath();
+            try (FileOutputStream fos = new FileOutputStream(imageFile)) {
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                Toast.makeText(this, "Image Saved", Toast.LENGTH_SHORT).show();
+                stickerView.setLocked(false);
+            } catch (IOException e) {
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        }
+        galleryAddPic(savedImagePath);
+//        EditActivity.this.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+    }
+
+    private void galleryAddPic(String imagePath) {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(imagePath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        sendBroadcast(mediaScanIntent);
     }
 }
