@@ -22,10 +22,12 @@ public class glassesAdapter extends RecyclerView.Adapter<glassesAdapter.ViewHold
 
     Context context;
     ArrayList<Bitmap> pngImageslist;
+    FragmentActivity activity;
 
-    public glassesAdapter(Context context, ArrayList<Bitmap> pngImageslist) {
+    public glassesAdapter(Context context, ArrayList<Bitmap> pngImageslist,FragmentActivity activity) {
         this.context = context;
         this.pngImageslist = pngImageslist;
+        this.activity = activity;
     }
 
     @NonNull
@@ -41,6 +43,18 @@ public class glassesAdapter extends RecyclerView.Adapter<glassesAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.imageView.setImageBitmap(pngImageslist.get(position));
+        Bitmap bitmap = pngImageslist.get(position);
+
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                EditActivity editActivity = (EditActivity) activity;
+                editActivity.takeData(bitmap);
+
+//                Toast.makeText(holder.imageView.getContext(), "text" + effect.getImage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

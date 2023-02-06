@@ -47,7 +47,7 @@ public class RecyclerviewEffectAdapter extends RecyclerView.Adapter<Recyclerview
             public void onClick(View view) {
 
                 EditActivity editActivity = (EditActivity) activity;
-                editActivity.takeData(effect.getImage());
+//                editActivity.takeData(effect.getImage());
 
 //                Toast.makeText(holder.imageView.getContext(), "text" + effect.getImage(), Toast.LENGTH_SHORT).show();
             }

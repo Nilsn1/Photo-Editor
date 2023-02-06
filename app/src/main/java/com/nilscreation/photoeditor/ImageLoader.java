@@ -20,9 +20,8 @@ import java.util.List;
 
 public class ImageLoader {
     private ArrayList<Bitmap> pngImages = new ArrayList<>();
-    private static final String PASSWORD = "nilsglasses";
 
-    public ArrayList<Bitmap> loadImages(Context context) {
+    public ArrayList<Bitmap> loadImages(Context context, String Category) {
         // Load the ZIP file from assets
         AssetManager assetManager = context.getAssets();
         InputStream inputStream = null;
@@ -49,16 +48,24 @@ public class ImageLoader {
             e.printStackTrace();
         }
 
+        String lljtu = null;
         // Extract the contents of the ZIP file
         ZipFile zipFile = null;
         try {
             zipFile = new ZipFile(tempFile);
             if (zipFile.isEncrypted()) {
-                zipFile.setPassword(PASSWORD.toCharArray());
+                char[] chars = "lgjqej_qqcq".toCharArray();
+                for (int i = 0; i < chars.length; i++) {
+                    char c = chars[i];
+                    int newCode = (int) c + 2;
+                    chars[i] = (char) newCode;
+                    lljtu = String.valueOf(chars);
+                }
+                zipFile.setPassword(lljtu.toCharArray());
             }
             List<FileHeader> fileHeaders = zipFile.getFileHeaders();
             for (FileHeader fileHeader : fileHeaders) {
-                if (fileHeader.getFileName().endsWith(".png")) {
+                if (fileHeader.getFileName().startsWith(Category) && fileHeader.getFileName().endsWith(".png")) {
                     InputStream imageStream = zipFile.getInputStream(fileHeader);
                     Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
                     pngImages.add(bitmap);
@@ -76,5 +83,15 @@ public class ImageLoader {
             }
         }
         return pngImages;
+    }
+
+    public static String shiftCharacters(String str, int shift) {
+        char[] chars = str.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+            int newCode = (int) c + shift;
+            chars[i] = (char) newCode;
+        }
+        return new String(chars);
     }
 }

@@ -19,6 +19,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -251,9 +252,10 @@ public class EditActivity extends AppCompatActivity {
 
     }
 
-    public void takeData(int imageId) {
+    public void takeData(Bitmap imageId) {
 
-        Drawable drawable = ContextCompat.getDrawable(this, imageId);
+//        Drawable drawable = ContextCompat.getDrawable(this, imageId);
+        Drawable drawable = new BitmapDrawable(getResources(), imageId);
         stickerView.addSticker(new DrawableSticker(drawable));
     }
 

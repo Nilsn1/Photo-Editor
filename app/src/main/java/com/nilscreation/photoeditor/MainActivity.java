@@ -13,7 +13,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -36,11 +38,6 @@ public class MainActivity extends AppCompatActivity {
     ImageView settings, imggallery;
     private static final String PASSWORD = "nilsglasses";
 
-    RecyclerView recyclerView;
-
-
-    private ArrayList<Bitmap> pngImages = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,22 +49,26 @@ public class MainActivity extends AppCompatActivity {
         btnMore = findViewById(R.id.btnMore);
         settings = findViewById(R.id.settings);
         imggallery = findViewById(R.id.imggallery);
-        recyclerView = findViewById(R.id.recyclerview);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager((this), LinearLayoutManager.HORIZONTAL, false));
-
+//        ViewTreeObserver vto = btnCamera.getViewTreeObserver();
+//        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                btnCamera.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//                int height = btnCamera.getHeight();
+//
+//                float density = getResources().getDisplayMetrics().density;
+//                int heightInDp = (int) (height / density + 0.5f);
+//
+//                Toast.makeText(MainActivity.this, " " + heightInDp, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         ArrayList<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.CENTER_INSIDE));
         slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.CENTER_INSIDE));
         slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.CENTER_INSIDE));
         slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.CENTER_INSIDE));
-
-        ImageLoader imageLoader = new ImageLoader();
-        pngImages = imageLoader.loadImages(MainActivity.this);
-
-        glassesAdapter adapter = new glassesAdapter(MainActivity.this, pngImages);
-        recyclerView.setAdapter(adapter);
 
 //        // Load the ZIP file from assets
 //        AssetManager assetManager = getAssets();
