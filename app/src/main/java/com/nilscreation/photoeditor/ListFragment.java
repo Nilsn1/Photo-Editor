@@ -61,7 +61,7 @@ public class ListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager((context), LinearLayoutManager.HORIZONTAL, false));
 
         ImageLoader imageLoader = new ImageLoader();
-        pngImages = imageLoader.loadImages(getContext(), "A");
+        pngImages = imageLoader.loadImages(getContext(), "sunglasses");
         setadapter();
 
         btnSunglasses.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +69,7 @@ public class ListFragment extends Fragment {
             public void onClick(View view) {
 
                 ImageLoader imageLoader = new ImageLoader();
-                pngImages = imageLoader.loadImages(getContext(), "A");
+                pngImages = imageLoader.loadImages(getContext(), "sunglasses");
                 setadapter();
             }
         });
@@ -78,7 +78,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ImageLoader imageLoader = new ImageLoader();
-                pngImages = imageLoader.loadImages(getContext(), "A");
+                pngImages = imageLoader.loadImages(getContext(), "frames");
                 setadapter();
             }
         });
@@ -87,7 +87,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ImageLoader imageLoader = new ImageLoader();
-                pngImages = imageLoader.loadImages(getContext(), "A");
+                pngImages = imageLoader.loadImages(getContext(), "cool");
                 setadapter();
             }
         });
@@ -96,7 +96,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ImageLoader imageLoader = new ImageLoader();
-                pngImages = imageLoader.loadImages(getContext(), "A");
+                pngImages = imageLoader.loadImages(getContext(), "girls");
                 setadapter();
             }
         });
@@ -106,7 +106,7 @@ public class ListFragment extends Fragment {
             public void onClick(View view) {
 
                 ImageLoader imageLoader = new ImageLoader();
-                pngImages = imageLoader.loadImages(getContext(), "A");
+                pngImages = imageLoader.loadImages(getContext(), "premium");
                 setadapter();
             }
         });
@@ -118,7 +118,7 @@ public class ListFragment extends Fragment {
 //        RecyclerviewEffectAdapter adapter = new RecyclerviewEffectAdapter(context, arrayeffects, getActivity());
 //        recyclerView.setAdapter(adapter);
 
-        glassesAdapter adapter = new glassesAdapter(getContext(), pngImages,getActivity());
+        glassesAdapter adapter = new glassesAdapter(getContext(), pngImages, getActivity());
         recyclerView.setAdapter(adapter);
     }
 }
