@@ -106,7 +106,7 @@ public class ListFragment extends Fragment {
             public void onClick(View view) {
 
                 ImageLoader imageLoader = new ImageLoader();
-                pngImages = imageLoader.loadImages(getContext(), "premium");
+                pngImages = imageLoader.loadImages(getContext(), "premuim");
                 setadapter();
             }
         });
