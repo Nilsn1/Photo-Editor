@@ -11,8 +11,12 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -21,6 +25,8 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +34,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -62,6 +70,8 @@ public class EditActivity extends AppCompatActivity {
     Boolean locked = true;
     String[] permission = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"};
     private InterstitialAd mInterstitialAd;
+
+    networkChangListener networkChangListener = new networkChangListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -351,5 +361,54 @@ public class EditActivity extends AppCompatActivity {
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         sendBroadcast(mediaScanIntent);
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangListener, filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangListener);
+        super.onStop();
+    }
+
+    private boolean isConnected(EditActivity Activity) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) Activity.getSystemService(EditActivity.this.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        return (wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected());
+    }
+
+    public class networkChangListener extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            //Internet connection
+            if (!isConnected(EditActivity.this)) {
+
+                Dialog dialog = new Dialog(EditActivity.this);
+                dialog.setContentView(R.layout.internet_dialog);
+                dialog.setCancelable(false);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                Button btnOk = dialog.findViewById(R.id.btn_retry);
+                btnOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        onReceive(EditActivity.this, intent);
+//                        loadFragment(new MainFragment());
+                    }
+                });
+                dialog.show();
+            }
+
+        }
     }
 }
