@@ -4,18 +4,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -26,29 +21,26 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.nilscreation.photoeditor.Adapter.glassesAdapter;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
 
     CardView btnGallery, btnCamera, btnMore;
     ImageSlider imageSlider;
     AdView mAdView;
-    ImageView settings, imggallery;
-    private static final String PASSWORD = "nilsglasses";
+    ImageView settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         imageSlider = findViewById(R.id.image_slider);
         btnGallery = findViewById(R.id.btnGallery);
         btnCamera = findViewById(R.id.btnCamera);
         btnMore = findViewById(R.id.btnMore);
         settings = findViewById(R.id.settings);
-        imggallery = findViewById(R.id.imggallery);
 
 //        ViewTreeObserver vto = btnCamera.getViewTreeObserver();
 //        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -128,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
 
-        MobileAds.initialize(MainActivity.this, new OnInitializationCompleteListener() {
+        MobileAds.initialize(MainActivity2.this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
 
@@ -153,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(MainActivity2.this, SettingsActivity.class);
                 startActivity(intent);
             }
         });
@@ -162,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                Intent intent = new Intent(MainActivity2.this, MainActivity2.class);
                 startActivity(intent);
                 return false;
             }
@@ -179,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 //                startActivityForResult(intent, 100);
 
                 //dhaval2404 Image picker Library
-                ImagePicker.with(MainActivity.this)
+                ImagePicker.with(MainActivity2.this)
                         .crop()                    //Crop image(Optional), Check Customization for more option
                         .galleryOnly()
 //                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
@@ -191,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ImagePicker.with(MainActivity.this)
+                ImagePicker.with(MainActivity2.this)
                         .crop()
                         .cameraOnly()
                         .start(100);
@@ -215,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 100) {
             if (data.getData() != null) {
                 Uri filepath = data.getData();
-                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                Intent intent = new Intent(MainActivity2.this, EditActivity.class);
                 intent.setData(filepath);
                 startActivity(intent);
             }
