@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,9 +17,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.nilscreation.photoeditor.Adapter.glassesAdapter;
 
 import java.util.ArrayList;
@@ -31,6 +36,8 @@ public class ListFragment extends Fragment {
     ArrayList<effects> arrayeffects = new ArrayList<>();
     private ArrayList<Bitmap> pngImages = new ArrayList<>();
     AdView mAdView;
+
+    private InterstitialAd mInterstitialAd;
 
     public ListFragment() {
         // Required empty public constructor
@@ -53,6 +60,8 @@ public class ListFragment extends Fragment {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
+
+        mInterstitialAd();
 
         mAdView = view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -105,6 +114,25 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                //SHOW INTERSTITIAL AD
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(getActivity());
+
+                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                        @Override
+                        public void onAdDismissedFullScreenContent() {
+                            super.onAdDismissedFullScreenContent();
+
+                            mInterstitialAd = null;
+                            mInterstitialAd();
+                        }
+                    });
+
+                } else {
+//                    Toast.makeText(EditActivity.this, "ad not ready", Toast.LENGTH_SHORT).show();
+                    mInterstitialAd();
+                }
+
                 ImageLoader imageLoader = new ImageLoader();
                 pngImages = imageLoader.loadImages(getContext(), "premuim");
                 setadapter();
@@ -120,5 +148,25 @@ public class ListFragment extends Fragment {
 
         glassesAdapter adapter = new glassesAdapter(getContext(), pngImages, getActivity());
         recyclerView.setAdapter(adapter);
+    }
+
+    private void mInterstitialAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(getContext(), "ca-app-pub-3940256099942544/1033173712", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                mInterstitialAd = interstitialAd;
+//                Toast.makeText(EditActivity.this, "loaded", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                mInterstitialAd = null;
+            }
+        });
     }
 }
