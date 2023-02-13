@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "62198298975",
+    "project_id": "sunglasses-editor",
+    "storage_bucket": "sunglasses-editor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62198298975:android:b751e861e97f3a0d01deea",
+        "android_client_info": {
+          "package_name": "com.nilscreation.sunglasseseditor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62198298975-0lvorsak4hl435hkm888uk63gpbp31u0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBihdVoTNcItEa4EJ-NFbl1oipBQ3LOY-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62198298975-0lvorsak4hl435hkm888uk63gpbp31u0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
