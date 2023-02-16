@@ -64,7 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
         btnPrivacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://thenilscreation.blogspot.com/p/daily-facts-privacy.html";
+                String url = "https://thenilscreation.blogspot.com/p/sunglasses-editor-privacy.html";
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
                 startActivity(intent);

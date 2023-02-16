@@ -59,7 +59,7 @@ public class EditActivity extends AppCompatActivity {
     StickerView stickerView;
     ImageView btnBack, mainImage, lockImg, save;
     TextView lockTxt;
-    LinearLayout btnLock, btnRemove, btnRemoveAll, btnSave, mainLayout;
+    LinearLayout mainLayout;
     Boolean locked = true;
     String[] permission = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"};
     private InterstitialAd mInterstitialAd;
@@ -74,12 +74,6 @@ public class EditActivity extends AppCompatActivity {
         stickerView = findViewById(R.id.sticker_view);
         btnBack = findViewById(R.id.btnBack);
         mainImage = findViewById(R.id.mainImage);
-        lockImg = findViewById(R.id.lockImg);
-        lockTxt = findViewById(R.id.lockTxt);
-        btnLock = findViewById(R.id.btnLock);
-        btnRemove = findViewById(R.id.btnRemove);
-        btnRemoveAll = findViewById(R.id.btnRemoveaAll);
-        btnSave = findViewById(R.id.btnSave);
         mainLayout = findViewById(R.id.mainLayout);
         save = findViewById(R.id.save);
 
@@ -110,50 +104,6 @@ public class EditActivity extends AppCompatActivity {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-
-        btnLock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                stickerView.setLocked(!stickerView.isLocked());
-                if (locked) {
-                    locked = false;
-                    lockTxt.setTextColor(getResources().getColor(R.color.primary));
-                    lockImg.setImageResource(R.drawable.lock_red);
-                } else {
-                    locked = true;
-                    lockTxt.setTextColor(getResources().getColor(R.color.text_color));
-                    lockImg.setImageResource(R.drawable.lock);
-
-                }
-            }
-        });
-        btnRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                stickerView.removeCurrentSticker();
-            }
-        });
-        btnRemoveAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                stickerView.removeAllStickers();
-
-            }
-        });
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //REQUEST PERMISSIONS
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(permission, 80);
-                }
-
-                stickerView.setLocked(true);
-
-            }
-        });
 
         mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override

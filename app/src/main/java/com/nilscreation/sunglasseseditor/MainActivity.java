@@ -65,10 +65,9 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         ArrayList<SlideModel> slideModels = new ArrayList<>();
-        slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.CENTER_INSIDE));
+        slideModels.add(new SlideModel(R.drawable.sunglasses1, ScaleTypes.CENTER_INSIDE));
         slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.CENTER_INSIDE));
-        slideModels.add(new SlideModel(R.drawable.sunglasses, ScaleTypes.CENTER_INSIDE));
-        slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.CENTER_INSIDE));
+        slideModels.add(new SlideModel(R.drawable.sunglasses3, ScaleTypes.CENTER_INSIDE));
 
 //        // Load the ZIP file from assets
 //        AssetManager assetManager = getAssets();
@@ -155,16 +154,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        settings.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                startActivity(intent);
-                return false;
             }
         });
 
