@@ -280,7 +280,7 @@ public class EditActivity extends AppCompatActivity {
         } else {
             File storageDir = new File(
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                    "PhotoEditor");
+                    "Sunglasses_PhotoEditor");
             if (!storageDir.exists()) {
                 storageDir.mkdirs();
             }
@@ -347,6 +347,8 @@ public class EditActivity extends AppCompatActivity {
                         dialog.dismiss();
                         onReceive(EditActivity.this, intent);
 //                        loadFragment(new MainFragment());
+                        mInterstitialAd();
+
                     }
                 });
                 dialog.show();
