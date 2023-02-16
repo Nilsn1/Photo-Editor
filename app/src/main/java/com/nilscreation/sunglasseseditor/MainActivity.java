@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ImageSlider imageSlider;
     AdView mAdView;
     ImageView settings, imggallery;
-    private static final String PASSWORD = "nilsglasses";
+    private static final String PASSWORD = "adf1234";
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -68,62 +68,6 @@ public class MainActivity extends AppCompatActivity {
         slideModels.add(new SlideModel(R.drawable.sunglasses1, ScaleTypes.CENTER_INSIDE));
         slideModels.add(new SlideModel(R.drawable.sunglasses2, ScaleTypes.CENTER_INSIDE));
         slideModels.add(new SlideModel(R.drawable.sunglasses3, ScaleTypes.CENTER_INSIDE));
-
-//        // Load the ZIP file from assets
-//        AssetManager assetManager = getAssets();
-//        InputStream inputStream = null;
-//        try {
-//            inputStream = assetManager.open("cool.zip");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Create a temporary file to extract the contents of the ZIP file
-//        File tempFile = new File(getCacheDir(), "cool.zip");
-//        try {
-//            FileOutputStream outputStream = new FileOutputStream(tempFile);
-//            byte[] buffer = new byte[1024];
-//            int read;
-//            while ((read = inputStream.read(buffer)) != -1) {
-//                outputStream.write(buffer, 0, read);
-//            }
-//            outputStream.flush();
-//            outputStream.close();
-//            inputStream.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Extract the contents of the ZIP file
-//        ZipFile zipFile = null;
-//        try {
-//            zipFile = new ZipFile(tempFile);
-//            if (zipFile.isEncrypted()) {
-//                zipFile.setPassword(PASSWORD.toCharArray());
-//            }
-//            List<FileHeader> fileHeaders = zipFile.getFileHeaders();
-//            for (FileHeader fileHeader : fileHeaders) {
-//                if (fileHeader.getFileName().endsWith(".png")) {
-//                    InputStream imageStream = zipFile.getInputStream(fileHeader);
-//                    Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
-//                    pngImages.add(bitmap);
-//
-//                    glassesAdapter adapter = new glassesAdapter(MainActivity.this, pngImages);
-//                    recyclerView.setAdapter(adapter);
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (zipFile != null) {
-//                try {
-//                    zipFile.getInputStream(zipFile.getFileHeader("cool.zip")).close();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
 

@@ -152,7 +152,7 @@ public class ListFragment extends Fragment {
     private void mInterstitialAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        InterstitialAd.load(getContext(), "ca-app-pub-3940256099942544/1033173712", adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(getContext(), "ca-app-pub-9137303962163689/9521808783", adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 // The mInterstitialAd reference will be null until
