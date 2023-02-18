@@ -133,7 +133,7 @@ public class ListFragment extends Fragment {
                 }
 
                 ImageLoader imageLoader = new ImageLoader();
-                pngImages = imageLoader.loadImages(getContext(), "premuim");
+                pngImages = imageLoader.loadImages(getContext(), "premium");
                 setadapter();
             }
         });
